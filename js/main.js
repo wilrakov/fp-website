@@ -47,4 +47,5 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.forEach(l => l.style.animation = ''); // Reset animation
         });
     });
+    
 });
