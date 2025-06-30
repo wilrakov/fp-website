@@ -1,11 +1,40 @@
 :root {
+    --background: #f4f4f9;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --card-foreground: #1a1a1a;
+    --popover: #ffffff;
+    --popover-foreground: #1a1a1a;
+    --primary: #007bff;
+    --primary-foreground: #ffffff;
+    --secondary: #e9ecef;
+    --secondary-foreground: #1a1a1a;
+    --muted: #f8f9fa;
+    --muted-foreground: #6c757d;
+    --accent: #e9ecef;
+    --accent-foreground: #1a1a1a;
+    --destructive: #dc3545;
+    --destructive-foreground: #ffffff;
+    --border: #dee2e6;
+    --input: #ced4da;
+    --ring: #80bdff;
+
+    --radius: 0.5rem;
+    --font-sans: 'Inter', sans-serif;
+}
+
+html {
+	scroll-behavior: smooth !important;
+}
+
+body.dark-mode {
     --background: #0a0a0a;
     --foreground: #e0e0e0;
     --card: #1a1a1a;
     --card-foreground: #e0e0e0;
     --popover: #1a1a1a;
     --popover-foreground: #e0e0e0;
-    --primary: #0056b3; /* A more refined blue for Free Pascal */
+    --primary: #0056b3;
     --primary-foreground: #ffffff;
     --secondary: #333333;
     --secondary-foreground: #e0e0e0;
@@ -18,10 +47,6 @@
     --border: #333333;
     --input: #333333;
     --ring: #8b5cf6;
-
-    --radius: 0.5rem;
-
-    --font-sans: 'Inter', sans-serif; /* A modern, clean sans-serif font */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -40,6 +65,7 @@ body {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* General Styles */
@@ -50,7 +76,7 @@ a {
 }
 
 a:hover {
-    color: color-mix(in srgb, var(--primary) 80%, white 20%);
+    color: white;
 }
 
 .container {
@@ -69,13 +95,13 @@ a:hover {
     border-radius: var(--radius);
     background-color: var(--primary);
     color: var(--primary-foreground);
-    border: none;
+    border: 1px solid var(--primary);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, border-color 0.2s;
 }
 
 .btn:hover {
-    background-color: color-mix(in srgb, var(--primary) 80%, black 20%);
+    background-color: color-mix(in srgb, var(--primary) 90%, black 10%);
     transform: translateY(-2px);
 }
 
@@ -98,7 +124,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 nav {
@@ -144,15 +171,24 @@ nav {
     width: 100%;
 }
 
+/* Theme Switcher */
+.theme-switcher {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--foreground);
+    margin-left: 1.5rem;
+}
+
 /* Burger Menu */
 .burger-menu {
-    display: none; /* Hidden by default, shown on mobile */
+    display: none;
     cursor: pointer;
     flex-direction: column;
     justify-content: space-around;
     width: 2rem;
     height: 2rem;
     z-index: 1001;
+    margin-left: 1rem;
 }
 
 .burger-menu div {
@@ -182,10 +218,11 @@ section {
     text-align: center;
     max-width: 1200px;
     margin: 0 auto;
+    transition: background-color 0.3s;
 }
 
 section:nth-of-type(even) {
-    background-color: var(--card);
+    background-color: var(--muted);
 }
 
 h2 {
@@ -260,6 +297,50 @@ h2 {
     margin-right: auto;
 }
 
+.version-badge {
+    margin-bottom: 1.5rem;
+}
+
+.version-badge a {
+    color: var(--primary);
+    background-color: color-mix(in srgb, var(--primary) 15%, transparent);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.version-badge a:hover {
+    background-color: color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+.scroll-down-chevron {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--foreground);
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.scroll-down-chevron:hover {
+	color: var(--foreground);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
 /* Feature Grid */
 .feature-grid {
     display: grid;
@@ -273,14 +354,14 @@ h2 {
     padding: 2rem;
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     text-align: left;
 }
 
 .feature-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .feature-item h3 {
@@ -293,6 +374,54 @@ h2 {
 .feature-item p {
     color: var(--card-foreground);
     font-size: 0.95rem;
+}
+
+/* Code Examples Section */
+.code-example-container {
+    background-color: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.code-tabs {
+    display: flex;
+    background-color: var(--muted);
+    border-bottom: 1px solid var(--border);
+}
+
+.tab-link {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tab-link.active {
+    background-color: var(--card);
+    color: var(--primary);
+    border-right: 1px solid var(--border);
+}
+
+.tab-link:last-child.active {
+    border-right: none;
+}
+
+.code-content {
+    padding: 1.5rem;
+}
+
+.code-content pre {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
 }
 
 /* Steps Container */
@@ -309,7 +438,7 @@ h2 {
     padding: 2rem;
     border-radius: var(--radius);
     border: 1px solid var(--border);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     flex: 1;
     min-width: 280px;
     max-width: 350px;
@@ -325,7 +454,7 @@ h2 {
     right: 1rem;
     font-size: 3rem;
     font-weight: 700;
-    color: rgba(0, 123, 255, 0.1);
+    color: color-mix(in srgb, var(--primary) 10%, transparent);
     z-index: 0;
 }
 
@@ -391,6 +520,7 @@ footer {
     padding: 2rem 1.5rem;
     border-top: 1px solid var(--border);
     font-size: 0.9rem;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 footer a {
@@ -398,7 +528,7 @@ footer a {
 }
 
 /* Animations */
-.fade-in {
+.js-enabled .fade-in {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -465,6 +595,16 @@ footer a {
 
     nav {
         flex-wrap: wrap;
+    }
+    
+    .theme-switcher {
+        order: -1; /* Move theme switcher to the left of the burger menu */
+        margin-left: 0;
+        margin-right: 1rem;
+    }
+
+    .logo {
+        flex-grow: 1;
     }
 
     .hero-content h1 {

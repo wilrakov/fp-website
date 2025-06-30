@@ -9,8 +9,11 @@
     <meta name="keywords" content="Free Pascal, Pascal, Object Pascal, Compiler, Open Source, Lazarus, Development, Programming, Wilrakov, Modern Website">
     <meta name="author" content="Wilrakov">
     <meta name="robots" content="index, follow">
+    <script>document.documentElement.classList.add('js-enabled');</script>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link id="prism-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
     <header>
@@ -20,10 +23,15 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#features">Features</a></li>
+                    <li><a href="#why-fpc">Why FPC?</a></li>
+                    <li><a href="#code-examples">Examples</a></li>
                     <li><a href="#get-started">Get Started</a></li>
                     <li><a href="#community">Community</a></li>
                     <li><a href="#download">Download</a></li>
                 </ul>
+            </div>
+            <div class="theme-switcher">
+                <i class="fas fa-sun"></i>
             </div>
             <div class="burger-menu">
                 <div class="line1"></div>
@@ -36,15 +44,21 @@
     <main>
         <section id="home" class="hero fade-in">
             <div class="hero-content">
+                <div class="version-badge">
+                    <a href="https://wiki.freepascal.org/FPC_New_Features_3.2.0">Version 3.2.2 - Discover what's new</a>
+                </div>
                 <h1>Free Pascal</h1>
-                <p>The powerful and versatile open-source compiler for Pascal and Object Pascal.</p>
+                <p>Stable, fast, open source... The powerful and versatile compiler for Pascal and Object Pascal.</p>
                 <a href="#download" class="btn">Download Now</a>
             </div>
+            <a href="#features" class="scroll-down-chevron">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </section>
 
         <section id="features" class="fade-in">
             <h2>Key Features</h2>
-            <p class="section-description">Free Pascal is a powerful and versatile compiler, offering broad compatibility and cross-platform support for your projects.</p>
+            <p class="section-description">Free Pascal is a professional compiler, offering broad compatibility, cross-platform support, and a commitment to open-source development.</p>
             <div class="feature-grid">
                 <div class="feature-item">
                     <h3>Broad Compatibility</h3>
@@ -61,6 +75,94 @@
                 <div class="feature-item">
                     <h3>Lazarus Integration</h3>
                     <p>Seamlessly integrated with the Lazarus IDE for rapid cross-platform GUI application development.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-fpc" class="fade-in">
+            <h2>Why Choose Free Pascal?</h2>
+            <p class="section-description">Discover the advantages of using Free Pascal for your next project, from its robust performance to its supportive community.</p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Performance & Control</h3>
+                    <p>Generate fast, native code with direct access to hardware and system APIs. Free Pascal gives you the low-level control often missing in modern languages.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Rapid Development</h3>
+                    <p>With its clear syntax and the powerful Lazarus IDE, development is fast and intuitive. The compiler's speed also minimizes wait times.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Stability & Maturity</h3>
+                    <p>With over two decades of development, Free Pascal is a stable and reliable choice for long-term projects and enterprise-level applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="code-examples" class="fade-in">
+            <h2>Code Examples</h2>
+            <p class="section-description">See how simple and powerful Free Pascal can be. Here are a few examples to get you started.</p>
+            <div class="code-example-container">
+                <div class="code-tabs">
+                    <button class="tab-link active" onclick="openCode(event, 'HelloWorld')">Hello World</button>
+                    <button class="tab-link" onclick="openCode(event, 'FileIO')">File I/O</button>
+                    <button class="tab-link" onclick="openCode(event, 'Classes')">Classes</button>
+                </div>
+                <div id="HelloWorld" class="code-content">
+                    <pre><code class="language-pascal">program HelloWorld;
+begin
+  WriteLn('Hello, World!');
+end.</code></pre>
+                </div>
+                <div id="FileIO" class="code-content" style="display:none">
+                    <pre><code class="language-pascal">program FileIOExample;
+var
+  F: TextFile;
+  s: string;
+begin
+  Assign(F, 'test.txt');
+  Rewrite(F);
+  WriteLn(F, 'Writing to a file.');
+  Close(F);
+
+  Reset(F);
+  ReadLn(F, s);
+  WriteLn(s);
+  Close(F);
+end.</code></pre>
+                </div>
+                <div id="Classes" class="code-content" style="display:none">
+                    <pre><code class="language-pascal">program ClassesExample;
+type
+  TShape = class
+  public
+    function Area: Real; virtual; abstract;
+  end;
+
+  TCircle = class(TShape)
+  private
+    FRadius: Real;
+  public
+    constructor Create(Radius: Real);
+    function Area: Real; override;
+  end;
+
+constructor TCircle.Create(Radius: Real);
+begin
+  FRadius := Radius;
+end;
+
+function TCircle.Area: Real;
+begin
+  Result := Pi * Sqr(FRadius);
+end;
+
+var
+  MyCircle: TCircle;
+begin
+  MyCircle := TCircle.Create(10);
+  WriteLn('Area: ', MyCircle.Area:0:2);
+  MyCircle.Free;
+end.</code></pre>
                 </div>
             </div>
         </section>
@@ -111,6 +213,7 @@
             </div>
 
             <p class="note">For GUI development, we recommend using <a href="https://www.lazarus-ide.org/" target="_blank">Lazarus IDE</a>.</p>
+            <a href="https://wiki.freepascal.org/Category%3ARelease_Notes?utm_source=chatgpt.com" target="_blank" class="btn" style="margin-top: 2rem;">View Changelog</a>
         </section>
     </main>
 
@@ -120,5 +223,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-pascal.min.js"></script>
 </body>
 </html>
