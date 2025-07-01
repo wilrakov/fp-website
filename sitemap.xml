@@ -6,40 +6,4 @@
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
-    <url>
-        <loc>https://freepascal.vercel.app/#features</loc>
-        <lastmod>2025-06-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://freepascal.vercel.app/#why-fpc</loc>
-        <lastmod>2025-06-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://freepascal.vercel.app/#code-examples</loc>
-        <lastmod>2025-06-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://freepascal.vercel.app/#get-started</loc>
-        <lastmod>2025-06-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://freepascal.vercel.app/#community</loc>
-        <lastmod>2025-06-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://freepascal.vercel.app/#download</loc>
-        <lastmod>2025-06-30</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
 </urlset>
